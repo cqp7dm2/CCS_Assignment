@@ -32,7 +32,6 @@ $email=$_POST['email'];
 // Given password
 $password=md5($_POST['password']);
 
-
 $status=1;
 $sql="INSERT INTO  tblstudents(StudentId,FullName,MobileNumber,EmailId,Password,Status) VALUES(:StudentId,:fname,:mobileno,:email,:password,:status)";
 $query = $dbh->prepare($sql);
@@ -103,6 +102,8 @@ error:function (){}
 }
 </script>
 
+<!-- Code By : CQP -->
+<!-- Password Strength Checker -->
 <script>
 function PasscheckAvailability() {
 $("#loaderIcon").show();
@@ -118,6 +119,24 @@ error:function (){}
 });
 }
 </script>
+
+<!-- Password Matching Checker -->
+<script>
+function PassMatch() {
+$("#loaderIcon").show();
+jQuery.ajax({
+url: "pass_match.php",
+data:'passMatchID='+$("#passMatchID").val(),
+type: "POST",
+success:function(data){
+$("#pass-match").html(data);
+$("#loaderIcon").hide();
+},
+error:function (){}
+});
+}
+</script>
+<!-- Code By : CQP -->
 
 </head>
 <body>
@@ -167,7 +186,8 @@ error:function (){}
 
 <div class="form-group">
 <label>Confirm Password </label>
-<input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
+<input class="form-control"  type="password" name="confirmpassword" id="passMatchID" autocomplete="off" required onBlur="PassMatch()" />
+   <span id="pass-match" style="font-size:12px;"></span>
 </div>
  <div class="form-group">
 <label>Verification code : </label>
