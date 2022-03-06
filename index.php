@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+//code by : CQP
+$IP = getenv ( "REMOTE_ADDR" );
+//code by : CQP
+
+
+
 error_reporting(0);
 include('includes/config.php');
 if($_SESSION['login']!=''){
@@ -9,7 +16,7 @@ if(isset($_POST['login']))
 {
 if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
         echo "<script>alert('Incorrect verification code');</script>" ;
-    } 
+    }
         else {
 $email=$_POST['emailid'];
 $password=md5($_POST['password']);
@@ -35,7 +42,7 @@ echo "<script>alert('Your Account Has been blocked .Please contact admin');</scr
 }
 }
 
-} 
+}
 
 else{
 echo "<script>alert('Invalid Details');</script>";
@@ -72,8 +79,8 @@ echo "<script>alert('Invalid Details');</script>";
 <h4 class="header-line">USER LOGIN FORM</h4>
 </div>
 </div>
-             
-<!--LOGIN PANEL START-->           
+
+<!--LOGIN PANEL START-->
 <div class="row">
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" >
 <div class="panel panel-info">
@@ -96,17 +103,17 @@ echo "<script>alert('Invalid Details');</script>";
  <div class="form-group">
 <label>Verification code : </label>
 <input type="text" class="form-control1"  name="vercode" maxlength="5" autocomplete="off" required  style="height:25px;" />&nbsp;<img src="captcha.php">
-</div> 
+</div>
 
  <button type="submit" name="login" class="btn btn-info">LOGIN </button> | <a href="signup.php">Not Register Yet</a>
 </form>
  </div>
 </div>
 </div>
-</div>  
-<!---LOGIN PABNEL END-->            
-             
- 
+</div>
+<!---LOGIN PABNEL END-->
+
+
     </div>
     </div>
      <!-- CONTENT-WRAPPER SECTION END-->

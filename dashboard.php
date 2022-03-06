@@ -3,7 +3,7 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['login'])==0)
-  { 
+  {
 header('location:index.php');
 }
 else{?>
@@ -34,20 +34,20 @@ else{?>
         <div class="row pad-botm">
             <div class="col-md-12">
                 <h4 class="header-line">User DASHBOARD</h4>
-                
+
                             </div>
 
         </div>
-             
+
              <div class="row">
 
 
 
-            
+
                  <div class="col-md-3 col-sm-3 col-xs-6">
                       <div class="alert alert-info back-widget-set text-center">
                             <i class="fa fa-bars fa-5x"></i>
-<?php 
+<?php
 $sid=$_SESSION['stdid'];
 $sql1 ="SELECT id from tblissuedbookdetails where StudentID=:sid";
 $query1 = $dbh -> prepare($sql1);
@@ -61,11 +61,11 @@ $issuedbooks=$query1->rowCount();
                             Book Issued
                         </div>
                     </div>
-             
+
                <div class="col-md-3 col-sm-3 col-xs-6">
                       <div class="alert alert-warning back-widget-set text-center">
                             <i class="fa fa-recycle fa-5x"></i>
-<?php 
+<?php
 $rsts=0;
 $sql2 ="SELECT id from tblissuedbookdetails where StudentID=:sid and ReturnStatus=:rsts";
 $query2 = $dbh -> prepare($sql2);
@@ -83,7 +83,7 @@ $returnedbooks=$query2->rowCount();
         </div>
 
 
-            
+
     </div>
     </div>
      <!-- CONTENT-WRAPPER SECTION END-->

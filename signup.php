@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+//code by : CQP
+$IP = getenv ( "REMOTE_ADDR" );
+//code by : CQP
+
 include('includes/config.php');
 error_reporting(0);
 if(isset($_POST['signup']))
