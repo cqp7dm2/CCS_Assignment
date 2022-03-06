@@ -31,6 +31,9 @@ if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
     }
         else {
 $email = htmlspecialchars($_POST['emailid']);
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo "<script>alert('Incorrect Email');</script>" ;
+}
 $password = sha1($_POST['password']);
 $sql ="SELECT FullName,EmailId,Password,StudentId,Status FROM tblstudents WHERE EmailId=:email and Password=:password";
 $query= $dbh -> prepare($sql);
