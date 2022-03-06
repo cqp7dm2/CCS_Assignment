@@ -25,7 +25,7 @@ $specialChars = preg_match('@[^\w]@', $password);
 
 // check user password strength
 	if (!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
-    echo "<span style='color:red'> Password UnMatch. Please Try Again .</span>";
+    echo "<span style='color:red'> Password Do Not Match. Please Try Again .</span>";
     echo "<script>$('#submit').prop('disabled',true);</script>";
 	}
 	else {

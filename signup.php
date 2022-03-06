@@ -11,7 +11,7 @@ error_reporting(0);
 
 if(isset($_POST['signup']))
 {
-//code for captach verification
+//code for captcha verification
 if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
         echo "<script>alert('Incorrect verification code');</script>" ;
     }
@@ -23,14 +23,16 @@ $hits[0] ++;
 $fp = fopen($count_my_page , "w");
 fputs($fp , "$hits[0]");
 fclose($fp);
-$StudentId= $hits[0];
-$fname=$_POST['fullanme'];
-$mobileno=$_POST['mobileno'];
-$email=$_POST['email'];
 
-//code by : CQP
-// Given password
-$password=md5($_POST['password']);
+// htmlspecialchars is implemented to prevent XSS attacks
+$StudentId = htmlspecialchars($hits[0]);
+$fname = htmlspecialchars($_POST['fullanme']);
+$mobileno = htmlspecialchars($_POST['mobileno']);
+$email = htmlspecialchars($_POST['email']);
+
+//code by : CQP & Ryan
+// Password hash uses sha1 encryption method, not readable in db
+$password=sha1($_POST['password']);
 
 $status=1;
 $sql="INSERT INTO  tblstudents(StudentId,FullName,MobileNumber,EmailId,Password,Status) VALUES(:StudentId,:fname,:mobileno,:email,:password,:status)";

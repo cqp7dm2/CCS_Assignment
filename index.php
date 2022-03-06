@@ -15,6 +15,10 @@ $IP = getenv ( "REMOTE_ADDR" );
 //     $param[$key] = stripslashes($value);
 // }
 
+// htmlspecialchars is implemented to prevent XSS attacks under email ID
+// htmlspecialchars is not implemented on password field as it is hashed, all script related
+// symbols would be encrypted and have no effects
+
 error_reporting(0);
 include('includes/config.php');
 if($_SESSION['login']!=''){
@@ -26,8 +30,8 @@ if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
         echo "<script>alert('Incorrect verification code');</script>" ;
     }
         else {
-$email=$_POST['emailid'];
-$password=md5($_POST['password']);
+$email = htmlspecialchars($_POST['emailid']);
+$password = sha1($_POST['password']);
 $sql ="SELECT FullName,EmailId,Password,StudentId,Status FROM tblstudents WHERE EmailId=:email and Password=:password";
 $query= $dbh -> prepare($sql);
 $query-> bindParam(':email', $email, PDO::PARAM_STR);
