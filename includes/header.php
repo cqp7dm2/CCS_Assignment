@@ -14,7 +14,7 @@
             </div>
 <?php if($_SESSION['login'])
 {
-?> 
+?>
             <div class="right-div">
                 <a href="logout.php" class="btn btn-danger pull-right">LOG ME OUT</a>
             </div>
@@ -24,7 +24,7 @@
     <!-- LOGO HEADER END-->
 <?php if($_SESSION['login'])
 {
-?>    
+?>
 <section class="menu-section">
         <div class="container">
             <div class="row ">
@@ -32,8 +32,8 @@
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a href="dashboard.php" class="menu-top-active">DASHBOARD</a></li>
-                           
-                          
+
+
    <li>
                                 <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown"> Account <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
@@ -42,7 +42,7 @@
                                 </ul>
                             </li>
                             <li><a href="issued-books.php">Issued Books</a></li>
-                            <li><a href="request-a-book.php">Request a Book</a></li>    
+                            <li><a href="request-a-book.php">Request a Book</a></li>
                         </ul>
                     </div>
                 </div>
@@ -56,12 +56,12 @@
             <div class="row ">
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
-                        <ul id="menu-top" class="nav navbar-nav navbar-right">                        
-                          
-  <li><a href="adminlogin.php">Admin Login</a></li>
-                            <li><a href="signup.php">User Signup</a></li>
-                             <li><a href="index.php">User Login</a></li>
-                          
+                        <ul id="menu-top" class="nav navbar-nav navbar-right">
+
+  <li><a href="adminlogin">Admin Login</a></li>
+                            <li><a href="signup">User Signup</a></li>
+                             <li><a href="index">User Login</a></li>
+
 
                         </ul>
                     </div>

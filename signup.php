@@ -7,6 +7,8 @@ $IP = getenv ( "REMOTE_ADDR" );
 
 include('includes/config.php');
 error_reporting(0);
+
+
 if(isset($_POST['signup']))
 {
 //code for captach verification

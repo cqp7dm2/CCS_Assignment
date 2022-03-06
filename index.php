@@ -5,7 +5,15 @@ session_start();
 $IP = getenv ( "REMOTE_ADDR" );
 //code by : CQP
 
-
+// foreach ( explode('/',$_SERVER[]) as $pair ) {
+//     list($key,$value) = split('=',$pair,2);
+//     $param[$key] = stripslashes($value);
+// }
+//
+// foreach ( explode('/',$_SERVER['PATH_INFO']) as $pair ) {
+//     list($key,$value) = split('=',$pair,2);
+//     $param[$key] = stripslashes($value);
+// }
 
 error_reporting(0);
 include('includes/config.php');
