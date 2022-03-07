@@ -39,6 +39,7 @@ $fp = fopen($count_my_page , "w");
 fputs($fp , "$hits[0]");
 fclose($fp);
 
+//code by : Ryan
 // htmlspecialchars is implemented to prevent XSS attacks
 $StudentId = htmlspecialchars($hits[0]);
 $fname = htmlspecialchars($_POST['fullanme']);
