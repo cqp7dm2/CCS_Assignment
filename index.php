@@ -24,11 +24,28 @@ include('includes/config.php');
 if($_SESSION['login']!=''){
 $_SESSION['login']='';
 }
+
+//code by : minrui
+//if google recaptcha is verified, provide secret key
+ if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
+    {
+        $secret="6Lea7L0eAAAAABIfndQ3CIqgOSbAMCFvFLJzKwDN";
+
+        $response=file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+        $data=json_decode($response);
+    }
+
 if(isset($_POST['login']))
 {
 if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
         echo "<script>alert('Incorrect verification code');</script>" ;
     }
+        //code by : minrui
+        //if google recaptcha empty
+        if(empty($_POST['g-recaptcha-response']))
+        {
+            echo "<script>alert('Please verify reCaptcha');</script>";
+        }
         else {
 $email = htmlspecialchars($_POST['emailid']);
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -73,6 +90,11 @@ echo "<script>alert('Invalid Details');</script>";
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Online Library Management System | </title>
+    <!-- code by : minrui -->
+    <!-- google recaptcha implementation -->
+    <script src="https://www.google.com/recaptcha/api.js"
+    async defer></script>
+        
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -119,6 +141,10 @@ echo "<script>alert('Invalid Details');</script>";
 <label>Verification code : </label>
 <input type="text" class="form-control1"  name="vercode" maxlength="5" autocomplete="off" required  style="height:25px;" />&nbsp;<img src="captcha.php">
 </div>
+
+<!--code by : minrui-->
+<!-- google recaptcha v2 - i am not robot box-->
+<div class="g-recaptcha" data-sitekey="6Lea7L0eAAAAABa7GltQ1MS_e5MNouB-jv79u_KP"></div>       
 
  <button type="submit" name="login" class="btn btn-info">LOGIN </button> | <a href="signup.php">Not Register Yet</a>
 </form>
