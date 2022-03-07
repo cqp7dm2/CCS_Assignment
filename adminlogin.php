@@ -6,6 +6,8 @@ if($_SESSION['alogin']!=''){
 $_SESSION['alogin']='';
 }
 
+
+//testing cqp
 //code by : minrui
 //if google recaptcha is verified, provide secret key
 if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
