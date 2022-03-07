@@ -103,7 +103,7 @@ echo "<script>alert('Invalid Details');</script>";
 <label>Password</label>
 <input class="form-control" type="password" name="password" autocomplete="off" required />
 </div>
- <div class="form-group">
+<div class="form-group">
 <label>Verification code : </label>
 <input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
 </div>  

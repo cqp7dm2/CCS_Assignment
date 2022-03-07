@@ -1,23 +1,36 @@
 <?php
 session_start();
 include('includes/config.php');
+
 if(isset($_POST['login']))
 {
-$username=$_POST['username'];
-$password=md5($_POST['password']);
-$sql ="SELECT UserName,Password FROM admin WHERE UserName=:username and Password=:password";
-$query= $dbh -> prepare($sql);
-$query-> bindParam(':username', $username, PDO::PARAM_STR);
-$query-> bindParam(':password', $password, PDO::PARAM_STR);
-$query-> execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-if($query->rowCount() > 0)
-{
-$_SESSION['alogin']=$_POST['username'];
-echo "<script type='text/javascript'> document.location ='dashboard.php'; </script>";
-} else{
-echo "<script>alert('Invalid Details');</script>";
-}
+ //code for captcha verification
+if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
+        echo "<script>alert('Incorrect verification code');</script>" ;
+    }
+    //code by : minrui
+    //if google recaptcha empty
+    if(empty($_POST['g-recaptcha-response']))
+    {
+        echo "<script>alert('Please verify reCaptcha');</script>";
+    }
+        $username=$_POST['username'];
+        $password=md5($_POST['password']);
+        $sql ="SELECT UserName,Password FROM admin WHERE UserName=:username and Password=:password";
+        $query= $dbh -> prepare($sql);
+        $query-> bindParam(':username', $username, PDO::PARAM_STR);
+        $query-> bindParam(':password', $password, PDO::PARAM_STR);
+        $query-> execute();
+        $results=$query->fetchAll(PDO::FETCH_OBJ);
+    if($query->rowCount() > 0)
+    {
+        $_SESSION['alogin']=$_POST['username'];
+        echo "<script type='text/javascript'> document.location ='dashboard.php'; </script>";
+    } 
+    else
+    {
+        echo "<script>alert('Invalid Details');</script>";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -28,6 +41,12 @@ echo "<script>alert('Invalid Details');</script>";
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Online Library Management System</title>
+
+    <!-- code by : minrui -->
+    <!-- google recaptcha implementation -->
+    <script src="https://www.google.com/recaptcha/api.js"
+    async defer></script>
+
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -68,7 +87,16 @@ echo "<script>alert('Invalid Details');</script>";
 <label>Password</label>
 <input class="form-control" type="password" name="password" required />
 </div>
- <button type="submit" name="login" class="btn btn-info">LOGIN </button>
+<div class="form-group">
+<label>Verification code : </label>
+<input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
+</div>  
+
+<!--code by : minrui-->
+<!-- google recaptcha v2 - i am not robot box-->
+<div class="g-recaptcha" data-sitekey="6Lea7L0eAAAAABa7GltQ1MS_e5MNouB-jv79u_KP"></div>
+
+<button type="submit" name="login" class="btn btn-info">LOGIN </button>
 </form>
  </div>
 </div>

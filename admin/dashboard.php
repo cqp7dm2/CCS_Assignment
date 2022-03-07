@@ -2,11 +2,28 @@
 session_start();
 error_reporting(0);
 include('includes/config.php');
-if(strlen($_SESSION['alogin'])==0)
-  { 
-header('location:index.php');
+
+// code by : minrui 
+// session time out after 30 minutes (for testing, chg to 60 secs)
+if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 1800)) {
+  session_unset(); 
+  session_destroy();
+  echo $session ['login']; 
+  echo "<script>alert('session timeout');</script>";
+  include ('logout.php');
 }
-else{?>
+$_SESSION['start'] = time();
+//-------------------------------------
+
+//if(strlen($_SESSION['alogin'])==0)
+//  { 
+//    echo "<script>alert('Session timeout!');";
+//    echo "window.location.href='index.php';</script>";
+
+//}
+//else{
+
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -229,4 +246,5 @@ $fine=$result->fine;
     <script src="assets/js/custom.js"></script>
 </body>
 </html>
-<?php } ?>
+<?php //} 
+?>
