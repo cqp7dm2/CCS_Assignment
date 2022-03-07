@@ -25,6 +25,8 @@ if($_SESSION['login']!=''){
 $_SESSION['login']='';
 }
 
+// testing
+
 //code by : minrui
 //if google recaptcha is verified, provide secret key
  if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
@@ -94,7 +96,7 @@ echo "<script>alert('Invalid Details');</script>";
     <!-- google recaptcha implementation -->
     <script src="https://www.google.com/recaptcha/api.js"
     async defer></script>
-        
+
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -144,7 +146,7 @@ echo "<script>alert('Invalid Details');</script>";
 
 <!--code by : minrui-->
 <!-- google recaptcha v2 - i am not robot box-->
-<div class="g-recaptcha" data-sitekey="6Lea7L0eAAAAABa7GltQ1MS_e5MNouB-jv79u_KP"></div>       
+<div class="g-recaptcha" data-sitekey="6Lea7L0eAAAAABa7GltQ1MS_e5MNouB-jv79u_KP"></div>
 
  <button type="submit" name="login" class="btn btn-info">LOGIN </button> | <a href="signup.php">Not Register Yet</a>
 </form>
