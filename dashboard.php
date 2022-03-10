@@ -3,24 +3,11 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 
-// code by : minrui 
-// session time out after 30 minutes (for testing, chg to 60 secs)
-if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 1800)) {
-  session_unset(); 
-  session_destroy();
-  echo $session ['login']; 
-  echo "<script>alert('session timeout');</script>";
-  include ('logout.php');
-}
-$_SESSION['start'] = time();
-
-//-------------------------------------
-
-if(strlen($_SESSION['login'])==0)
-  {
-header('location:index.php');
-}
-else{?>
+//if(strlen($_SESSION['login'])==0)
+ // {
+ //   header('location:index.php');
+ // }
+//else{?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -42,6 +29,20 @@ else{?>
 <body>
       <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
+
+<!-- code by : minrui 
+ session time out after 30 minutes (for testing, chg to 60 secs) -->
+<?php
+if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 60)) {
+  session_unset(); 
+  session_destroy();
+  echo $session ['login']; 
+  echo "<script>alert('session timeout');</script>";
+  include ('logout.php');
+}
+$_SESSION['start'] = time();
+?>
+<!------------------------------------->
 <!-- MENU SECTION END-->
     <div class="content-wrapper">
          <div class="container">
@@ -110,4 +111,5 @@ $returnedbooks=$query2->rowCount();
     <script src="assets/js/custom.js"></script>
 </body>
 </html>
-<?php } ?>
+<?php //} 
+?>

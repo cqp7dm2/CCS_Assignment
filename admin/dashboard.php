@@ -9,7 +9,7 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 1800)) {
   session_unset(); 
   session_destroy();
   echo $session ['login']; 
-  echo "<script>alert('session timeout');</script>";
+  //echo "<script>alert('session timeout');</script>";
   include ('logout.php');
 }
 $_SESSION['start'] = time();
